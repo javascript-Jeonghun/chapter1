@@ -2,11 +2,44 @@ const defaultResult = 0;
 
 let currentResult = defaultResult;
 
-
-function add() {
-  currentResult = currentResult +  parseInt(userInput.value);
-  outputResult(currentResult, '');
+function getUserNumberInput(){
+  return parseInt(userInput.value);
 }
 
+function createAndWriteOutput(operator, resultBeforeCalc, calcNumber){
+  const calcDescription = `${resultBeforeCalc}  ${operator} ${calcNumber}`
+  outputResult(currentResult, calcDescription);
+}
+
+function add() {
+  const enteredNumber = getUserNumberInput();
+  const initalResult = currentResult;
+  currentResult = currentResult +  enteredNumber; 
+  //+userInput.value로도 사용가능 .toString 문자열로 바꾸는 방법
+  createAndWriteOutput('+', initalResult, enteredNumber);
+}
+
+function subtract(){
+  const enteredNumber = getUserNumberInput();
+  const initalResult = currentResult;
+  currentResult = currentResult -  enteredNumber; 
+  createAndWriteOutput('-', initalResult, enteredNumber);
+}
+
+function multiply(){
+  const enteredNumber = getUserNumberInput();
+  const initalResult = currentResult;
+  currentResult = currentResult *  enteredNumber; 
+  createAndWriteOutput('*', initalResult, enteredNumber);
+}
+function divide(){
+  const enteredNumber = getUserNumberInput();
+  const initalResult = currentResult;
+  currentResult = currentResult /  enteredNumber; 
+  createAndWriteOutput('/', initalResult, enteredNumber);
+}
 addBtn.addEventListener('click', add);
+subtractBtn.addEventListener('click', subtract);
+multiplyBtn.addEventListener('click', multiply);
+divideBtn.addEventListener('click', divide);
 
